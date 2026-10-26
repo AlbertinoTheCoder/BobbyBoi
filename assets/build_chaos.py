@@ -58,9 +58,43 @@ for x in [-2,2]:
  for z in [-2.5,2.5]:creep+=[B((x,3,z),(4,6,4),green,'leg')]
 creep += [B((0,21,4.1),(2,2,.2),(17,31,15),'mouth'),B((0,19.5,4.1),(4,1,.2),(17,31,15),'mouth')]
 build('petcreeper',creep,2)
-cell=[B((0,1,0),(38,2,25),stone),B((0,28,0),(38,2,25),stone),B((0,14,-11),(38,26,2),stone),B((-18,14,0),(2,26,25),stone),B((18,14,0),(2,26,25),stone),B((-8,5,-4),(14,3,10),(112,52,43),'bed')]
-for x in range(-15,16,5):cell+=[B((x,14,12),(1,26,1),iron,'bars')]
-cell+=[B((0,10,12),(36,1,1),iron,'bars'),B((0,22,12),(36,1,1),iron,'bars')]
+# A small stone-brick guardhouse, with a separate hinged foreground gate.
+cell=[]
+brick_rng=random.Random(74)
+for row in range(5):
+    y=5+row*6
+    for col in range(7):
+        x=-21+col*7
+        # Staggered brick courses and an inset barred back window.
+        if row in (2,3) and col in (3,4):continue
+        tone=brick_rng.choice([(91,98,103),(104,109,110),(112,117,115),(95,106,99)])
+        cell.append(B((x,y,-13),(6.7,5.7,3),tone,'shell'))
+    for side in [-1,1]:
+        for z in [-8,-1,6,13]:
+            tone=brick_rng.choice([(103,109,112),(118,120,115),(91,103,95)])
+            cell.append(B((side*23,y,z),(4,5.7,6.7),tone,'shell'))
+for x in range(-20,22,7):
+    for z in [-9,-2,5,12]:cell.append(B((x,1,z),(6.8,2,6.8),brick_rng.choice([(83,88,88),(103,106,99),(93,99,96)]),'shell'))
+# Masonry uprights, a shallow lintel and crenellated roof trim.
+for side in [-1,1]:
+    cell += [B((side*23,18,16),(5,34,5),(127,132,128),'front'),B((side*23,36,4),(6,3,30),(153,155,145),'shell')]
+cell += [B((0,35,16),(50,4,6),(133,139,133),'front'),B((0,2,17),(44,2,7),(126,130,120),'front'),B((0,38,-12),(50,3,5),(125,132,127),'shell')]
+for x in [-22,-11,0,11,22]:cell.append(B((x,40,-12),(5,4,5),(145,148,137),'shell'))
+for side in [-1,1]:
+    for z in [-7,5,16]:cell.append(B((side*23,40,z),(5,5,5),(142,146,136),'shell'))
+# A narrow back window, straw mattress, pillow, and a bucket.
+for x in [0,3.5,7]:cell.append(B((x,23,-11.2),(.7,11,.8),(133,150,151),'shell'))
+cell += [B((3.5,17,-11),(12,1,1),(137,149,145),'shell'),B((3.5,29,-11),(12,1,1),(137,149,145),'shell'),B((-12,4,-3),(12,3,17),(116,77,39),'shell'),B((-12,6,-3),(11,2,16),(163,139,77),'shell'),B((-12,7,-8),(10,1.5,5),(219,211,175),'shell'),B((15,4,-7),(5,5,5),(91,105,107),'shell')]
+# Warm lanterns in the stone pillars, with iron brackets.
+for side in [-1,1]:
+    cell += [B((side*23,27,20),(1.4,6,1.4),(71,76,76),'front'),B((side*23,24,20),(4.4,6,3.6),(70,76,77),'front'),B((side*23,24,22),(3.2,3.7,.35),(255,195,77),'lamp'),B((side*23,24,22.3),(1.2,2.4,.2),(255,229,146),'lamp')]
+# An actual sign board rather than floating yellow text.
+cell += [B((0,39,19),(31,7,1.6),(69,46,28),'front'),B((0,39,20),(28.5,4.8,.6),(113,78,40),'front')]
+# One gate: thin dark iron rods, two rails, hinges and a small latch.
+for x in [-18,-11,-5,5,11,18]:cell.append(B((x,18,17),(0.85,29,1.1),(133,151,151),'gate'))
+for y in [4,13,32]:cell.append(B((0,y,17),(37,.9,1.2),(118,137,138),'gate'))
+for y in [8,27]:cell.append(B((-19,y,17),(2,2.8,2),(79,89,89),'gate'))
+cell += [B((15,18,18),(3.6,4,.8),(76,85,82),'gate'),B((15,18,18.5),(1.8,2,.3),(196,157,68),'gate')]
 build('prison',cell,3)
 portal=[]
 for x in [-12,12]:

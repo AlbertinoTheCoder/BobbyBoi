@@ -3,7 +3,7 @@ setlocal
 cd /d "%~dp0"
 set DOTNET_CLI_HOME=%CD%\.dotnet
 set DOTNET_CLI_TELEMETRY_OPTOUT=1
-dotnet publish BobbyBoi.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o dist
+dotnet publish src\BobbyBoi\BobbyBoi.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o dist
 if errorlevel 1 exit /b 1
 dist\BobbyBoi.exe --self-test
 if errorlevel 1 exit /b 1

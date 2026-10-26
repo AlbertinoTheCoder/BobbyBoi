@@ -17,8 +17,8 @@ jobs:
         with:
           dotnet-version: '10.0.x'
       - name: Build
-        run: dotnet build BobbyBoi.csproj -c Release
+        run: dotnet build BobbyBoi.slnx -c Release
       - name: Render and physics checks
-        run: dotnet bin/Release/net10.0-windows/BobbyBoi.dll --self-test
+        run: dotnet src/BobbyBoi/bin/Release/net10.0-windows/BobbyBoi.dll --self-test
       - name: Sound synthesis and mixer checks
-        run: dotnet bin/Release/net10.0-windows/BobbyBoi.dll --sfx-test
+        run: dotnet src/BobbyBoi/bin/Release/net10.0-windows/BobbyBoi.dll --sfx-test

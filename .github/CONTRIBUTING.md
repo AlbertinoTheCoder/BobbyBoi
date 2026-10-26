@@ -1,5 +1,7 @@
 # Contributing to BobbyBoi
 
+I welcome small fixes and new bad ideas for my desktop pet.
+
 Small, focused changes are easier to review. Open an issue before starting a large new activity or renderer rewrite.
 
 ## Local setup
@@ -9,11 +11,11 @@ Use Windows and the .NET 10 SDK. Run `dotnet build -c Release` for development, 
 Useful checks:
 
 ```powershell
-dotnet run -c Release -- --self-test
-dotnet run -c Release -- --sfx-test
-dotnet run -c Release -- --world-test
-dotnet run -c Release -- --chaos-test
-dotnet run -c Release -- --interruption-test
+dotnet run --project src/BobbyBoi -c Release -- --self-test
+dotnet run --project src/BobbyBoi -c Release -- --sfx-test
+dotnet run --project src/BobbyBoi -c Release -- --world-test
+dotnet run --project src/BobbyBoi -c Release -- --chaos-test
+dotnet run --project src/BobbyBoi -c Release -- --interruption-test
 ```
 
 The first two are suitable for unattended Windows CI. World, menu, native-overlay and real-app delivery checks need a normal Windows desktop. Tests write to `artifacts/`, which is intentionally ignored.

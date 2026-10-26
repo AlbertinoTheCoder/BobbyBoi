@@ -2,12 +2,21 @@ using System.Numerics;
 namespace BobbyBoi;
 sealed partial class Pet {
  SceneVisual ChaosProp(string name,Vector2 feet,float scale=3,float yaw=.25f,bool animated=false)=>new(new((int)feet.X-160,(int)feet.Y-250,320,320),(g,o)=>ChaosAssets.Draw(g,name,feet+o,scale,yaw,worldAge,animated));
+ static Vector2 PrisonPoint(Vector2 origin,Vector3 v){float yaw=.12f;var p=new Vector3(v.X*MathF.Cos(yaw)+v.Z*MathF.Sin(yaw),v.Y,-v.X*MathF.Sin(yaw)+v.Z*MathF.Cos(yaw));return origin+new Vector2(p.X*3.5f,-p.Y*3.5f+p.Z*3.5f*.34f);}
  IEnumerable<SceneVisual> ExpansionVisuals(){
   if(data.World.PetCreeper){var p=creeperFeet+new Vector2(0,-Math.Abs(MathF.Sin(creeperAge*4))*3);yield return ChaosProp("petcreeper",p,2,creeperFeet.X<x+Width/2?.65f:-.65f,!data.World.CreeperSitting);}
   var a=world.Active;if(a==null||a.Spec.Kind<WorldEventKind.Prison)yield break;float t=a.Age;var anchor=chaosAnchor;
   switch(a.Spec.Kind){
    case WorldEventKind.Prison:
-    if(t<8){var golem=new Vector2(x+Width/2+Math.Max(45,220-t*35),y+Height);float facing=t<5?-1:Math.Sign(chaosAnchor.X-(x+Width/2));yield return ChaosProp("golem",golem,3,facing*.85f,true);}if(t>=8&&t<18)yield return ChaosProp("golem",anchor+new Vector2(120,0),3,-.85f);if(t>=5&&t<19){yield return new(new((int)anchor.X-160,(int)anchor.Y-250,320,320),(g,o)=>{ChaosAssets.Draw(g,"prison",anchor+o,4,.12f);if(actorInside){Character.Draw(g,anchor+o-new Vector2(0,8),3.1f,action,worldAge,.1f,0,animationPose:jailPose);using var bar=new SolidBrush(Color.FromArgb(195,198,189));for(int k=-2;k<=2;k++)g.FillRectangle(bar,anchor.X+o.X+k*22-1,anchor.Y+o.Y-107,3,108);}PixelText.Draw(g,"BOBBYBOI JAIL",(int)(anchor.X+o.X-60),(int)(anchor.Y+o.Y-136),Color.Goldenrod,1);});}break;
+    if(t<8){var golem=new Vector2(x+Width/2+Math.Max(45,220-t*35),y+Height);float facing=t<5?-1:Math.Sign(chaosAnchor.X-(x+Width/2));yield return ChaosProp("golem",golem,3,facing*.85f,true);}
+    if(t>=8&&t<20)yield return ChaosProp("golem",anchor+new Vector2(120+Math.Max(0,t-18)*70,0),3,t<18?-.85f:.85f,t>=18);
+    if(t>=5&&t<21)yield return new(new((int)anchor.X-165,(int)anchor.Y-235,370,285),(g,o)=>{
+     var cell=anchor+o-new Vector2(0,20);float opening=t<7.4f?1:t<8?1-(t-7.4f)/.6f:t<17.8f?0:Math.Clamp((t-17.8f)/.6f,0,1);int gate=(int)MathF.Round(opening*12);
+     ChaosAssets.Draw(g,"prison",cell,3.5f,.12f,layer:"back");
+     if(actorInside){float exit=Math.Clamp((t-18)/2,0,1);var feet=cell+Vector2.Lerp(new(0,-7),new(130,28),exit);Character.Draw(g,feet,3.1f,action,worldAge,exit>0?.85f:.12f,0,animationPose:jailPose);}
+     ChaosAssets.Draw(g,"prison",cell,3.5f,.12f,layer:"front",gateStep:gate);
+     var sign=PrisonPoint(cell,new(0,39,20.5f));PixelText.Draw(g,"BOBBY JAIL",(int)sign.X-29,(int)sign.Y-3,Color.FromArgb(244,216,143),1);
+    });break;
    case WorldEventKind.Casino:
     yield return ChaosProp("casino",anchor,3.4f,.1f,t<5);yield return new(new((int)anchor.X-60,(int)anchor.Y-100,130,50),(g,o)=>{PixelText.Draw(g,"CASINO",(int)(anchor.X+o.X-35),(int)(anchor.Y+o.Y-100),Color.Gold,2);for(int i=0;i<3;i++)PixelText.Draw(g,t<5?((int)(t*12+i)%9).ToString():(chaosResult==0?"0":"1"),(int)(anchor.X+o.X-22+i*17),(int)(anchor.Y+o.Y-65),Color.LimeGreen,2);});break;
    case WorldEventKind.Portal:

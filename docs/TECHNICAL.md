@@ -1,5 +1,12 @@
 # BobbyBoi
 
+## Version 2.1.2: jail renovation
+
+The jail now uses a Blender-built brick shell and a separate hinged foreground gate. The character is rendered between those layers, so there is one set of bars and his face remains visible. Entry and release animate the gate; release walks him outside the doorway before returning to his normal overlay. `--jail-test` checks entry, incarceration, opening, exit and cleanup, with snapshots in artifacts/jail-*.png.
+
+The Windows project is now src/BobbyBoi/BobbyBoi.csproj; BobbyBoi.slnx builds it from the repository root.
+
+
 ## Version 2.1.1: sound and interaction polish
 
 Adds 55 original synthesized cues for movement, throwing/landing, eating, mining, fishing casts/splashes/bites/reeling, damage, death/respawn, creeper fuses/explosions, companions, achievements, loot and the expansion scenes. An eight-voice buffered Windows mixer lets explosions, death cues and other important effects overlap instead of stopping each other. Samples are generated once per cue and reused. Existing volume, mute and expedition-sounds settings apply; pause/hide silence active voices. No downloaded recordings, sound packs or online services are used.
@@ -8,7 +15,7 @@ Temporary dragging, gifts, dance and sleep interactions now retain the interrupt
 
 The golem has separate left/right articulated limbs, alternates its arms and legs while walking, turns with the arrest/escort direction and faces the cell while guarding it. Herobrine now has pixel-varied skin/clothes, shirt sleeves, hair, a beard/nose and boots. The BobbyTube board is 40 pixels higher. Menus stay open when the pointer merely leaves them; outside clicks, Escape or choosing an action close the root and its submenus.
 
-The replacement icon is a large 3D close-up of the actual Blender character head in seven sizes. `--build-icon` regenerates BobbyBoi.ico and assets/icon-preview.png. Updating through Restart notifies the Windows shell to refresh cached icons. `--refresh-icon` repeats that notification without deleting icon-cache files or restarting Explorer.
+The replacement icon is a large 3D close-up of the actual Blender character head in seven sizes. `--build-icon` regenerates assets/BobbyBoi.ico and assets/icon-preview.png. Updating through Restart notifies the Windows shell to refresh cached icons. `--refresh-icon` repeats that notification without deleting icon-cache files or restarting Explorer.
 
 `--sfx-test` verifies every PCM/WAV cue, distinct sound families, overlapping voices, clipping protection, cleanup and mute behavior. `--audio-playback-test` briefly plays fishing and overlapping explosion/death cues through the actual Windows audio device at the saved volume (skips if muted). `--interruption-test` checks preserved event IDs/phases, ordinary behavior and meme-trip progress, reward-once behavior and explicit cancellation. Reports are under artifacts/sfx-tests.txt, sfx-playback.txt and interruption-tests.txt. Speaker/headphone audibility and preferred loudness remain user checks.
 

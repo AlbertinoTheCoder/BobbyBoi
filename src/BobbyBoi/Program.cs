@@ -8,6 +8,7 @@ namespace BobbyBoi;
 static class Program {
  [STAThread] static void Main(string[] args) {
   ApplicationConfiguration.Initialize();
+  if(args.Contains("--jail-test")){try{JailTests.Run();}catch(Exception e){Directory.CreateDirectory("artifacts");File.WriteAllText("artifacts/jail-tests.txt",e.ToString());Environment.ExitCode=1;}return;}
   if(args.Contains("--interruption-test")){using var p=new Pet(true,true);try{p.VerifyInterruptions();}catch(Exception e){Directory.CreateDirectory("artifacts");File.WriteAllText("artifacts/interruption-tests.txt",e.ToString());Environment.ExitCode=1;}return;}
   if(args.Contains("--build-icon")){IconBuilder.Run();return;}
   if(args.Contains("--sfx-test")){SfxTests.Run();return;}

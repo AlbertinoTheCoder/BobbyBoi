@@ -1,2 +1,0 @@
-# No Python packages required. BobbyBoi uses C# / .NET 10 Windows Forms.
-# Build prerequisite: .NET 10 SDK. The published executable bundles its runtime.

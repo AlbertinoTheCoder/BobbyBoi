@@ -4,6 +4,7 @@
 
 [![Download](https://img.shields.io/github/v/release/AlbertinoTheCoder/BobbyBoi?style=for-the-badge&label=Download&color=7fb56a)](https://github.com/AlbertinoTheCoder/BobbyBoi/releases/latest)
 [![Build](https://img.shields.io/github/actions/workflow/status/AlbertinoTheCoder/BobbyBoi/build.yml?style=for-the-badge&label=Build)](https://github.com/AlbertinoTheCoder/BobbyBoi/actions/workflows/build.yml)
+[![License: PolyForm Noncommercial](https://img.shields.io/badge/License-PolyForm_Noncommercial-8f78ba?style=for-the-badge)](LICENSE)
 ![Windows x64](https://img.shields.io/badge/Windows-x64-3975a5?style=for-the-badge)
 ![.NET 10](https://img.shields.io/badge/.NET-10-9275c9?style=for-the-badge)
 
@@ -19,7 +20,7 @@ He fishes. He mines. He adopts a creeper. He gets arrested for illegal dirt trad
 
 ## Meet your least productive employee
 
-BobbyBoi lives on top of your Windows desktop as a transparent, animated voxel pet. Pick him up, throw him between monitors, give him snacks, or leave him to make questionable life choices.
+I made BobbyBoi to live on top of your Windows desktop as a transparent, animated voxel pet. Pick him up, throw him between monitors, give him snacks, or leave him to make questionable life choices.
 
 His Alex-inspired character, mobs, and expansion props have editable Blender source. The app renders them locally, makes its own sounds, and runs without a network connection.
 
@@ -70,7 +71,7 @@ Events connect: casino debt can lead to jail, portal trips can introduce a creep
 <table>
 <tr>
 <td width="50%"><img src="docs/images/prison.png" alt="BobbyBoi in desktop prison"/><p align="center"><b>Serving time for suspicious fishing.</b></p></td>
-<td width="50%"><img src="docs/images/golem-walk.png" alt="Golem turning and walking"/><p align="center"><b>The authorities have arrived.</b></p></td>
+<td width="50%"><img src="docs/images/prison-opening.png" alt="Hinged jail gate opening for release"/><p align="center"><b>Time served. Bad ideas pending.</b></p></td>
 </tr>
 </table>
 
@@ -113,10 +114,18 @@ For a quick development build:
 
 ```powershell
 dotnet build -c Release
-dotnet run -c Release
+dotnet run --project src/BobbyBoi -c Release
 ```
 
 There are no third-party runtime package dependencies. Blender is only needed to edit/re-export models.
+
+```text
+BobbyBoi.slnx   Windows solution
+src/BobbyBoi/   App, renderer and activity systems
+assets/         Original Blender projects and exported meshes
+tests/          Regression and native-overlay checks
+docs/           Technical notes, previews and release notes
+```
 
 <details>
 <summary><b>Inside the little disaster</b></summary>
@@ -129,9 +138,13 @@ There are no third-party runtime package dependencies. Blender is only needed to
 
 ![Original voxel models](docs/images/models.png)
 
-See [technical notes and verification commands](docs/TECHNICAL.md) and [contributing](CONTRIBUTING.md).
+See [technical notes and verification commands](docs/TECHNICAL.md) and [contributing](.github/CONTRIBUTING.md).
 
 </details>
+
+## License
+
+My original code and assets are available under the [PolyForm Noncommercial License 1.0.0](LICENSE). Use, modification and redistribution are allowed for permitted noncommercial purposes. Commercial use requires separate permission from me. See the full license and [notices](docs/NOTICE.md).
 
 ## What still needs work
 
@@ -144,7 +157,7 @@ Found something weird? [Open an issue](https://github.com/AlbertinoTheCoder/Bobb
 <div align="center">
 <img src="assets/icon-preview.png" width="72" alt="BobbyBoi's 3D Alex-inspired head"/>
 
-**Built by [AlbertinoTheCoder](https://github.com/AlbertinoTheCoder). Powered by dirt and bad judgment.**
+**Created and maintained by [AlbertinoTheCoder](https://github.com/AlbertinoTheCoder). Powered by dirt and bad judgment.**
 
 <sub>Unofficial fan project. Not affiliated with Mojang or Microsoft. Minecraft is a trademark of its respective owners.</sub>
 </div>

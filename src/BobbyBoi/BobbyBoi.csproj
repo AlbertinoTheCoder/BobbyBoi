@@ -6,20 +6,22 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>BobbyBoi</AssemblyName>
-    <Version>2.1.1</Version>
+    <Version>2.1.2</Version>
     <Product>BobbyBoi</Product>
     <Authors>AlbertinoTheCoder</Authors>
     <Description>A tiny Minecraft-inspired desktop companion. Small pet. Terrible decisions.</Description>
     <RepositoryUrl>https://github.com/AlbertinoTheCoder/BobbyBoi</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <ApplicationIcon>BobbyBoi.ico</ApplicationIcon>
+    <ApplicationIcon>../../assets/BobbyBoi.ico</ApplicationIcon>
+    <PackageLicenseExpression>PolyForm-Noncommercial-1.0.0</PackageLicenseExpression>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedResource Include="assets\chaos.json" />
-    <EmbeddedResource Include="assets\character.json" />
-    <EmbeddedResource Include="assets\zombie.json" />
-    <EmbeddedResource Include="assets\creeper.json" />
+    <Compile Include="../../tests/**/*.cs" Exclude="../../tests/**/bin/**;../../tests/**/obj/**" />
+    <EmbeddedResource Include="../../assets/chaos.json" LogicalName="BobbyBoi.assets.chaos.json" />
+    <EmbeddedResource Include="../../assets/character.json" LogicalName="BobbyBoi.assets.character.json" />
+    <EmbeddedResource Include="../../assets/zombie.json" LogicalName="BobbyBoi.assets.zombie.json" />
+    <EmbeddedResource Include="../../assets/creeper.json" LogicalName="BobbyBoi.assets.creeper.json" />
   </ItemGroup>
 </Project>
