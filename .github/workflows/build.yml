@@ -22,3 +22,5 @@ jobs:
         run: dotnet src/BobbyBoi/bin/Release/net10.0-windows/BobbyBoi.dll --self-test
       - name: Sound synthesis and mixer checks
         run: dotnet src/BobbyBoi/bin/Release/net10.0-windows/BobbyBoi.dll --sfx-test
+      - name: House removal visibility regression
+        run: dotnet src/BobbyBoi/bin/Release/net10.0-windows/BobbyBoi.dll --house-test

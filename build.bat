@@ -17,6 +17,8 @@ dist\BobbyBoi.exe --sfx-test
 if errorlevel 1 exit /b 1
 dist\BobbyBoi.exe --interruption-test
 if errorlevel 1 exit /b 1
+dist\BobbyBoi.exe --house-test
+if errorlevel 1 exit /b 1
 copy /y dist\BobbyBoi.exe BobbyBoi.exe >nul 2>nul
 if errorlevel 1 (
  echo New build ready in dist. Choose Restart BobbyBoi in the pet menu to apply it.

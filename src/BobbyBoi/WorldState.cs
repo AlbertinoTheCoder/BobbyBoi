@@ -26,6 +26,7 @@ sealed class WorldEventDirector {
   if(pending.Count==0&&state.Automatic&&now>=next&&!expeditionSoon){next=now+state.EventInterval+random.Next(-10,21);var candidates=Specs.Where(s=>state.Enabled(s.Kind)&&eligible(s.Kind)&&(!state.LastEvents.TryGetValue(s.Kind.ToString(),out var saved)||(DateTimeOffset.UtcNow-saved).TotalSeconds>=s.Cooldown)&&now-(last.TryGetValue(s.Kind,out var t)?t:(s.Kind==WorldEventKind.Dragon?-0: -600))>=s.Cooldown).ToArray();if(candidates.Length>0){var s=candidates[random.Next(candidates.Length)];pending.Add(s.Kind);}}
   var kind=pending.OrderByDescending(k=>Specs.Single(s=>s.Kind==k).Priority).FirstOrDefault(k=>state.Enabled(k)&&eligible(k), (WorldEventKind)(-1));if((int)kind<0)return null;pending.Remove(kind);activeState=state;Active=new WorldActivity(Specs.Single(s=>s.Kind==kind),true);return Active;
  }
+ public void DiscardPending(WorldEventKind kind)=>pending.Remove(kind);
  public WorldActivity? Pause(){var a=Active;Active=null;return a;}
  public void Resume(WorldActivity a){if(Active!=null)throw new InvalidOperationException("Activity already active");Active=a;}
  public void Finish(){if(Active!=null){last[Active.Spec.Kind]=now;if(Active.Spec.Kind>=WorldEventKind.Prison&&activeState!=null)activeState.LastEvents[Active.Spec.Kind.ToString()]=DateTimeOffset.UtcNow;Active=null;}}

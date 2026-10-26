@@ -1,5 +1,9 @@
 # BobbyBoi
 
+## Version 2.1.3: house removal visibility
+
+Removing or disabling a house now cancels invalid active, pending and suspended visits, clears stale occupancy and roof state, invalidates cached house artwork, and forces a character redraw even while paused. Intentional hiding in cave, portal, UFO and prison activities is preserved. `--house-test` covers these cases and inventory preservation.
+
 ## Version 2.1.2: jail renovation
 
 The jail now uses a Blender-built brick shell and a separate hinged foreground gate. The character is rendered between those layers, so there is one set of bars and his face remains visible. Entry and release animate the gate; release walks him outside the doorway before returning to his normal overlay. `--jail-test` checks entry, incarceration, opening, exit and cleanup, with snapshots in artifacts/jail-*.png.

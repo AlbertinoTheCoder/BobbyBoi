@@ -41,6 +41,7 @@ sealed partial class Pet {
  void CancelWorld(){ClearInterrupted();EndExpansion();var a=world.Active;if(a!=null)WorldTrace($"cancel {a.Id} {a.Spec.Kind}");actorInside=false;characterWorldScale=1;cursorGrabbed=false;world.Cancel();heldItem=null;if(!dragging)Set(Act.Idle,2);}
  void SuspendWorld(){WorldAudio.Silence();if(world.Active?.Spec.Kind==WorldEventKind.CursorPrank)CancelWorld();worldCanvas.Hide();}
  bool UpdateWorld(float dt){
+  RecoverMissingHouse();
   if(!worldTesting&&Native.Fullscreen(Handle)){if(world.Active?.Spec.Kind==WorldEventKind.CursorPrank)CancelWorld();worldCanvas.Hide();return world.Busy;}
   ResumeInterrupted(dt);worldAge+=dt;toastTime=Math.Max(0,toastTime-dt);cursorCooldown+=dt;worldParticles.Step(dt);if(data.World.AllowCursor&&CursorPrank.Emergency){data.World.AllowCursor=false;CancelWorld();SaveWorld();Say("cursor prank disabled");}
   UpdateCompanions(dt);UpdateExpansionCompanion(dt);

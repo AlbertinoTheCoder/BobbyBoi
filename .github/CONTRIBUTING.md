@@ -13,12 +13,13 @@ Useful checks:
 ```powershell
 dotnet run --project src/BobbyBoi -c Release -- --self-test
 dotnet run --project src/BobbyBoi -c Release -- --sfx-test
+dotnet run --project src/BobbyBoi -c Release -- --house-test
 dotnet run --project src/BobbyBoi -c Release -- --world-test
 dotnet run --project src/BobbyBoi -c Release -- --chaos-test
 dotnet run --project src/BobbyBoi -c Release -- --interruption-test
 ```
 
-The first two are suitable for unattended Windows CI. World, menu, native-overlay and real-app delivery checks need a normal Windows desktop. Tests write to `artifacts/`, which is intentionally ignored.
+The first three are suitable for unattended Windows CI. World, menu, native-overlay and real-app delivery checks need a normal Windows desktop. Tests write to `artifacts/`, which is intentionally ignored.
 
 ## Keep the pet a good desktop neighbor
 
