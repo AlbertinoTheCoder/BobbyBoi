@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>BobbyBoi</AssemblyName>
+    <Version>2.1.1</Version>
+    <Product>BobbyBoi</Product>
+    <Authors>AlbertinoTheCoder</Authors>
+    <Description>A tiny Minecraft-inspired desktop companion. Small pet. Terrible decisions.</Description>
+    <RepositoryUrl>https://github.com/AlbertinoTheCoder/BobbyBoi</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <ApplicationIcon>BobbyBoi.ico</ApplicationIcon>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="assets\chaos.json" />
+    <EmbeddedResource Include="assets\character.json" />
+    <EmbeddedResource Include="assets\zombie.json" />
+    <EmbeddedResource Include="assets\creeper.json" />
+  </ItemGroup>
+</Project>

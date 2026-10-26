@@ -1,0 +1,20 @@
+namespace BobbyBoi;
+sealed class Voicelines {
+ readonly Random random=new();readonly Dictionary<string,Queue<string>> decks=[];
+ internal static readonly Dictionary<string,string[]> Lines=new(){
+ ["idle"]=["my rent is 3 dirt","professional little guy","the pixels pay minimum wage","i yearn for the recycle bin","do i get dental","my GPU is a potato","emotionally in creative mode","steve owes me five emeralds","i have zero marketable skills","this desktop needs snacks","the taskbar is my landlord","i put the craft in unemployment","currently buffering a thought","my brain has one chunk loaded","who installed gravity","the mouse knows too much","i am NOT a shortcut","my therapist is a furnace","alt f4 is a state of mind","i forgot my own lore","inventory full. head empty","villagers have terrible credit","the floor is surprisingly floor","all my problems are cubes","i ate the tutorial","certified grass inspector","i have beef with the cursor","the wifi tastes crunchy","my shoes are loading","this is my productive era","no thoughts. just blocks","i peaked in the loading screen","i need a smaller mortgage","somebody nerf monday","my tax bracket is dirt","this meeting could be a sign","the desktop is flat confirmed","i brought emotional cobblestone","my job is standing here","i am the background process","my last braincell despawned","please hold. tiny crisis","i trained for this by napping","legally i am a folder","my resume says survival mode","i am 90 percent side quest","my aura is unbreaking zero","the printer fears me"],
+ ["greet"]=["oh hi","back from the void","did i miss snack time","your smallest employee is here","the pixels have arrived","another day another dirt"],
+ ["grab"]=["sir i am NOT luggage","we have lift off","put me down im expensive","this is not in my contract","my legs are decorative now","air jail again","please mind the braid","i did not book this flight"],
+ ["sleep"]=["saving my one braincell","do not disturb the blocks","wake me when rent is free","dreaming in 16 by 16","sleeping competitively","zzzz. diamond. zzzz"],
+ ["mine"]=["digging toward retirement","surely diamonds this time","mining my own business","this pickaxe has student debt","one block closer to lunch","looking for my motivation"],
+ ["food"]=["five stars. no table","bread acquired. peace restored","this is my whole personality","chef called. i answered","finally a software update i like","nom nom. legally binding"],
+ ["gem"]=["i can retire for 4 seconds","my net worth doubled","financially irresponsible era","i will treasure this briefly","the economy is healed","steve is gonna be so jealous"],
+ ["hurt"]=["ow. my last hitpoint","my bones are not stackable","i would like to unsubscribe","that was my emotional support rib","why is violence enabled","i demand a refund on gravity"],
+ ["respawn"]=["i blame windows","skill issue. allegedly","lag. definitely lag","death was a free trial","back by unpopular demand","my warranty covered that","the void rejected my application","i forgot to stay alive"],
+ ["fishing"]=["the fish owe me money","gone phishing. wrong kind","fishing for compliments","my rod has trust issues","the taskbar looks fishy","i brought my emotional support worm"],
+ ["treasure"]=["loot goblin hours","please contain rent money","opening my financial future","surely this is not another dirt","if cursed why shiny","my retirement chest"],
+ ["house"]=["real estate is a scam","building code? never met him","500k emeralds. no plumbing","my studio apartment arc","a roof over my bad decisions","structurally optimistic"],
+ ["dragon"]=["bro im unemployed","this was not in the tutorial","who ordered the angry lizard","i am underleveled emotionally","my insurance excludes dragons","can we resolve this by email"]
+ };
+ public string Next(string kind){if(!Lines.ContainsKey(kind))kind="idle";if(!decks.TryGetValue(kind,out var deck)||deck.Count==0){deck=new Queue<string>(Lines[kind].OrderBy(_=>random.Next()));decks[kind]=deck;}return deck.Dequeue();}
+}

@@ -1,0 +1,16 @@
+name: Bad idea / feature request
+description: Give BobbyBoi another questionable hobby.
+title: '[Idea] '
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What should BobbyBoi do?
+      placeholder: 'Explain the idea, the animation and the ridiculous outcome.'
+    validations:
+      required: true
+  - type: textarea
+    id: interaction
+    attributes:
+      label: How does it connect to his world?
+      description: Existing activities, companions, inventory or personality it could interact with.

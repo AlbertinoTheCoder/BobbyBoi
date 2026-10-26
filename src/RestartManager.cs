@@ -1,0 +1,16 @@
+using System.Diagnostics;
+using System.Security.Cryptography;
+namespace BobbyBoi;
+static class RestartManager {
+ public static string? StagedBuild(string target){string folder=Path.GetDirectoryName(target)!;string candidate=Path.Combine(folder,"dist","BobbyBoi.exe");if(!File.Exists(candidate)||File.GetLastWriteTimeUtc(candidate)<File.GetLastWriteTimeUtc(target))return null;using var a=File.OpenRead(candidate);using var b=File.OpenRead(target);return SHA256.HashData(a).SequenceEqual(SHA256.HashData(b))?null:candidate;}
+ public static void Apply(string source,string target){if(Path.GetFullPath(source).Equals(Path.GetFullPath(target),StringComparison.OrdinalIgnoreCase))return;string next=target+".pending";File.Copy(source,next,true);File.Move(next,target,true);}
+ public static void Start(string target,string? staged){string helper=staged??target;var info=new ProcessStartInfo(helper){UseShellExecute=false,WorkingDirectory=Path.GetDirectoryName(target)!};info.ArgumentList.Add("--restart-helper");info.ArgumentList.Add(Environment.ProcessId.ToString());info.ArgumentList.Add(target);info.ArgumentList.Add(staged??target);_ = Process.Start(info)??throw new IOException("Restart helper did not launch");}
+ public static void Helper(string[] args){string target=args[2],source=args[3];try{try{using var parent=Process.GetProcessById(int.Parse(args[1]));if(!parent.WaitForExit(20000))return;}catch(ArgumentException){}Apply(source,target);IconRefresh.Notify(target);Directory.CreateDirectory(SaveData.Folder);File.WriteAllText(Path.Combine(SaveData.Folder,"restart.log"),$"{DateTimeOffset.Now:O} restarted; appliedUpdate={!Path.GetFullPath(source).Equals(Path.GetFullPath(target),StringComparison.OrdinalIgnoreCase)}; target={target}");}catch(Exception e){try{Directory.CreateDirectory(SaveData.Folder);File.WriteAllText(Path.Combine(SaveData.Folder,"restart.log"),e.ToString());}catch{}}
+  Process.Start(new ProcessStartInfo(target){UseShellExecute=true,WorkingDirectory=Path.GetDirectoryName(target)!});
+ }
+ public static void Test(){string folder=Path.GetFullPath("artifacts/restart-tests");Directory.CreateDirectory(Path.Combine(folder,"dist"));string target=Path.Combine(folder,"BobbyBoi.exe"),source=Path.Combine(folder,"dist","BobbyBoi.exe");File.WriteAllBytes(target,[77,90,1,1]);File.WriteAllBytes(source,[77,90,2,2]);File.SetLastWriteTimeUtc(source,DateTime.UtcNow.AddMinutes(1));if(StagedBuild(target)!=source)throw new Exception("Staged update missing");Apply(source,target);if(!File.ReadAllBytes(target).SequenceEqual(File.ReadAllBytes(source)))throw new Exception("Staged update not applied");if(StagedBuild(target)!=null)throw new Exception("Identical build treated as update");Apply(target,target);File.WriteAllText("artifacts/restart-tests.txt","PASS: staged build discovery; changed executable applied; identical build ignored; restart without update preserves binary.\n");}
+}
+sealed partial class Pet {
+ bool restarting;
+ public async void RestartBobbyBoi(){if(restarting)return;restarting=true;try{string target=Environment.ProcessPath!;data.Save();string? staged=await Task.Run(()=>RestartManager.StagedBuild(target));if(IsDisposed)return;RestartManager.Start(target,staged);Close();}catch(Exception e){restarting=false;tray.ShowBalloonTip(4000,"Could not restart BobbyBoi",e.Message,ToolTipIcon.Warning);}}
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420">
+<defs><linearGradient id="night" x2="1" y2="1"><stop stop-color="#101c24"/><stop offset="1" stop-color="#1e332c"/></linearGradient><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#a3c592" stroke-opacity=".055"/></pattern></defs>
+<rect width="1280" height="420" rx="18" fill="url(#night)"/><rect width="1280" height="420" fill="url(#grid)"/>
+<g fill="#b7d29f" opacity=".45"><rect x="1020" y="50" width="4" height="4"/><rect x="1190" y="135" width="5" height="5"/><rect x="920" y="110" width="3" height="3"/><rect x="1130" y="310" width="4" height="4"/><rect x="840" y="45" width="4" height="4"/></g>
+<rect x="64" y="64" width="8" height="19" fill="#edaa4a"/><text x="89" y="80" fill="#a6bfaa" font-family="monospace" font-size="17" letter-spacing="3">YOUR DESKTOP HAS A NEW PROBLEM.</text>
+<text x="67" y="193" fill="#060e13" font-family="monospace" font-weight="900" font-size="110" letter-spacing="-5">BOBBYBOI</text>
+<text x="61" y="187" fill="#f4f1e5" font-family="monospace" font-weight="900" font-size="110" letter-spacing="-5">BOBBY<tspan fill="#f0ab49">BOI</tspan></text>
+<text x="65" y="237" fill="#d5dfcd" font-family="monospace" font-size="23">Small pet. Terrible decisions.</text>
+<text x="65" y="277" fill="#93a898" font-family="monospace" font-size="16">A Minecraft-inspired companion that lives,</text><text x="65" y="302" fill="#93a898" font-family="monospace" font-size="16">explores, and causes harmless chaos in Windows.</text>
+<g transform="translate(65 333)" font-family="monospace" font-size="13"><rect width="108" height="29" fill="#36583b" rx="4"/><text x="14" y="20" fill="#d6e9c4">WINDOWS x64</text><rect x="119" width="116" height="29" fill="#39444b" rx="4"/><text x="135" y="20" fill="#d1d9df">.NET 10</text><rect x="246" width="153" height="29" fill="#654c30" rx="4"/><text x="262" y="20" fill="#f7d39b">MAXIMUM NONSENSE</text></g>
+<g transform="translate(995 110)"><path d="M0 0L104-54 208 0 104 54Z" fill="#f2ac4c"/><path d="M0 0L104 54V178L0 124Z" fill="#d7812e"/><path d="M104 54L208 0V124L104 178Z" fill="#a45e25"/><path d="M18 18L45 32V59L18 45ZM65 43L90 56V83L65 70Z" fill="#f7c777"/><path d="M118 67L148 51V78L118 94ZM160 44L189 29V55L160 71Z" fill="#bd7430"/><path d="M16 75L42 89V112L16 99ZM64 103L88 116V141L64 128Z" fill="#c67429"/><path d="M117 121L148 105V132L117 148ZM161 96L191 80V107L161 123Z" fill="#9a5325"/></g>
+<g transform="translate(877 278)"><path d="M0 0L29-15 58 0 29 15Z" fill="#b5e6bd"/><path d="M0 0L29 15V48L0 33Z" fill="#67ac79"/><path d="M29 15L58 0V33L29 48Z" fill="#407b5b"/></g>
+<path d="M0 400H1280" stroke="#719953" stroke-width="4"/><path d="M0 404H1280V420H0" fill="#2a3427"/>
+</svg>

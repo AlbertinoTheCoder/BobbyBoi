@@ -1,0 +1,33 @@
+name: Bug report
+description: Something broke, clipped, vanished, or committed a desktop crime.
+title: '[Bug] '
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How can we reproduce it?
+      placeholder: 'Right-click BobbyBoi, choose an activity, then...'
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: BobbyBoi version
+      placeholder: '2.1.1'
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version and display setup
+      placeholder: 'Windows 11, two monitors, 100% / 125% scale'
+  - type: textarea
+    id: details
+    attributes:
+      label: Screenshots or extra details
+      description: Remove personal information before attaching anything.
